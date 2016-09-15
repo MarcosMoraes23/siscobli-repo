@@ -1,0 +1,85 @@
+<div class="container">
+   <div class="z-depth-3 white row" style="margin-top:20px; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+		<div class="row">
+			<div class="col s12 center title-text">
+				<h1>Cadastrar Periódico</h1>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+
+			<div class="col s12">
+
+				<div class="row">
+
+						<form class="col s12">
+
+						  
+						  <div class="row">
+							<div class="input-field col s12">
+								<i class="material-icons prefix">view_day</i>
+							  <input id="titulo" type="text" maxlength="256">
+							  <label for="titulo">Título</label>
+							</div>
+						   </div>
+							
+						   <div class="row">
+					
+								<div class="input-field col s7">
+									<i class="material-icons prefix">grade</i>
+								  <input id="categoria" type="text" maxlength="128">
+								  <label for="categoria">Categoria</label>
+								</div>
+							   
+							   <div class="col s2 right" style="padding: 16px;">
+								   <input class="with-gap" name="grupo1" type="radio" id="disponivel" checked/>
+									   <label for="disponivel">Disponível</label>
+								   <input class="with-gap indisponivel" name="grupo1" type="radio" id="indisponivel"  />
+										<label for="indisponivel">Indisponível</label>
+							   </div>
+							   
+								<div class="input-field col s3">
+								  <input id="dataLancamento" type="date" class="datepicker">
+									<label for="dataLancamento">Data Lançamento</label>
+								</div>
+							</div>
+							
+							
+							<div class="row">
+					
+								<div class="input-field col s4">
+								  <i class="material-icons prefix">subject</i>
+								  <input id="qtdReal" type="number" maxlength="5" ng-pattern="/^(0|[1-9][0-9]*)$/">
+								  <label for="qtdReal">Quantidade Real</label>
+								</div>
+								
+								<div class="input-field col s4">
+								  <input id="qtdExemplares" type="number" maxlength="5" step="1">
+								  <label for="qtdExemplares">Quantidade de exemplares</label>
+								</div>
+								
+								<div class="input-field col s4">
+								  <input id="edicao" type="number" maxlength="128" step="1">
+								  <label for="edicao">Edição</label>
+								</div>
+								
+							</div>
+
+						
+						  <div class="row" style="margin-top: 70px;">
+							<div style="float: right">
+								<a class="waves-effect waves-light btn grey marginButton">Limpar</a>
+								<a class="waves-effect waves-light btn marginButton" href="../periodico/lista.html">Voltar</a>
+								<a class="waves-effect waves-light btn green lighten-1 marginButton">
+									<i class="material-icons right">done_all</i>Confirmar</a>
+							</div>         
+						</div>
+				</form>
+			  </div>
+			</div>
+		</div>
+
+	</div>
+</div> 

@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="z-depth-3 white row" style="margin-top:20px; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+        <div class="row">
+            <div class="col s12 center title-text">
+                <h1>Alterar Usuário</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <form ng-model="formUsuario" ng-submit="alterarUsuario(formUsuario)">
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">person_pin</i>
+                            <input ng-model="formUsuario.nomeCompleto" id="nomeCompleto" type="text" maxlength="256">
+                            <label for="nomeCompleto">Nome Completo</label>
+                        </div>
+                    </div>
+                 
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">perm_identity</i>
+                            <input ng-model="formUsuario.login" id="login" type="text" maxlength="128">
+                            <label for="login">Login</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">lock</i>
+                            <input ng-model="senhaAlteracao" id="senha" type="password" maxlength="128">
+                            <label for="senha">Senha</label>
+                        </div>
+                    
+                        <div class="input-field col s6">
+                            <input ng-model="confirmaSenha" id="confirmarSenha" type="password" maxlength="128">
+                            <label for="confirmarSenha">Confirmar senha</label>
+                        </div>
+                    </div>
+
+                    <div class="row" id="selectMenu">
+                        <div class="input-field col s12">
+                            <select material-select watch ng-model="formUsuario.tipoUsuario" class="input-field">
+                                <option value="" disabled selected>Selecione um tipo</option>
+                                <option value="A">Aluno(a)</option>
+                                <option value="SU">Supervisor(a)</option>
+                                <option value="B">BibliotecÃ¡rio(a)</option>
+                                <option value="SE">Servidor(a)</option>
+                                <option value="P">Professor(a)</option>
+                                <option value="D">Diretor(a)</option>
+                            </select>
+                            
+                            <label for="tipoPublicacao" class="#000000 text-black">Tipo de UsuÃ¡rio</label>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <a class="waves-effect waves-light btn grey" ng-click="limparCampos()">Limpar</a>
+                        <a class="waves-effect waves-light btn" href="#/usuarios">Voltar</a>
+                        <button type="submit" class="waves-effect waves-light btn green lighten-1"><i class="material-icons right">done_all</i>Confirmar</button>
+                    </div>                           
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

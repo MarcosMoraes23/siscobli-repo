@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="siscobli">
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageTitle}}</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <!-- FONTES E ÍCONES .CSS-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <!-- /FONTES E ÍCONES .CSS-->
+    
+    <!-- MATERIALIZE .CSS-->
+        <link rel="stylesheet" href="recursos/materialize/css/materialize.min.css">
+        <link rel="stylesheet" href="recursos/css/style.css">
+    <!-- /MATERIALIZE .CSS-->
+    
+    <!-- MATERIALIZE .JS -->
+        <script type="text/javascript" src="recursos/js/jquery-2-2-1.js"></script>
+        <script type="text/javascript" src="recursos/materialize/js/materialize.min.js"></script>
+	<!-- /MATERIALIZE .JS -->
+	
+    <!-- ANGULAR JS .JS-->
+        <script type="text/javascript" src="recursos/angular/angular.min.js"></script>
+        <script type="text/javascript" src="recursos/angular/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="recursos/angular/angular-materialize.js"></script>
+        <script type="text/javascript" src="recursos/js/dirPagination.js"></script>
+        <script type="text/javascript" src="recursos/angular/angular-animate.min.js"></script>
+    <!-- /ANGULAR JS .JS-->
+	
+	<!-- APP .JS-->
+	    <script type="text/javascript" src="app.js"></script>
+    <!-- /APP .JS-->
+
+	<!-- USUÁRIO .JS-->
+        <script type="text/javascript" src="usuario/usuario.service.js"></script>
+        <script type="text/javascript" src="usuario/usuario.inicio.controller.js"></script>
+        <script type="text/javascript" src="usuario/usuario.cadastro.controller.js"></script>
+        <script type="text/javascript" src="usuario/usuario.alteracao.controller.js"></script>
+	<!-- /USUÁRIO .JS-->
+	
+	<!-- LIVRO .JS-->
+        <script type="text/javascript" src="livro/livro.service.js"></script>
+        <script type="text/javascript" src="livro/livro.inicio.controller.js"></script>
+        <script type="text/javascript" src="livro/livro.cadastro.controller.js"></script>
+        <script type="text/javascript" src="livro/livro.alteracao.controller.js"></script>
+	<!-- /LIVRO .JS-->
+	
+	<!-- TURMA .JS-->
+        <script type="text/javascript" src="turma/turma.service.js"></script>
+        <script type="text/javascript" src="turma/turma.inicio.controller.js"></script>
+        <script type="text/javascript" src="turma/turma.cadastro.controller.js"></script>
+	<!-- /TURMA .JS-->
+	
+	<!-- LOGIN .JS-->
+        <script type="text/javascript" src="login/login.service.js"></script>
+        <script type="text/javascript" src="login/login.controller.js"></script>
+	<!-- /LOGIN .JS-->
+	
+	<!-- INÍCIO .JS-->
+        <script type="text/javascript" src="inicio/inicio.controller.js"></script>
+	<!-- /INÍCIO .JS-->
+	
+	<base href="/app/">
+	
+</head>
+<body>
+      
+    <header>
+        <div ui-view="menu"></div>
+    </header>
+   	
+    <main>
+        <div ui-view="content"></div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<div class="container">
+	<div class="z-depth-3 white row" style="margin-top:40px; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+
+		<div class="row">
+				<div class="col s12 center title-text">
+					<h1>Usuários do Sistema</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s7">
+					<a 
+                        class="btn tooltipped waves-effect waves-light #0d47a1 blue darken-3" 
+					    tooltipped
+					    data-position="top" 
+					    data-delay="50" 
+					    data-tooltip="Cadastrar novo usuário" 
+					    type="button"
+					    href="#/usuarios/cadastro">Novo</a>
+				</div>  
+
+				<div class="input-field col s5 right">
+					<label for="pesquisa" >Pesquisa</label>
+					<input id="pesquisa" ng-model="pesquisa" type="text" maxlength="256" style="width: 88%;">
+					<a class="right btn-floating #323232 grey darken-3"><i class="material-icons">search</i></a>
+				</div>
+			</div>
+
+
+		<div class="row">
+			<div class="col s12">
+
+				<table class="highlight responsive-table">
+
+					<thead>
+						<tr>
+							<th>
+								Nome Completo
+							</th>
+							<th>
+								Login
+							</th>
+							<th>
+								Tipo de Usuário
+							</th>
+							<th class="center">
+								Ações
+							</th>
+						</tr>
+					   </thead>
+
+					<tbody>
+						<tr class="animate-repeat" dir-paginate="usuario in listUsuarios |filter:pesquisa |itemsPerPage:5">
+							<td width="41%">{{usuario.nomeCompleto}}</td>
+							<td width="25%">{{usuario.login}}</td>
+							<td width="14%">{{labelTipo(usuario.tipoUsuario)}}</td>
+							 <td class="center">				
+                            			     
+							    <a modal href="#modalDetalhamento">
+                                    <button class="btn-floating blue lighten-2 marginButton"  
+                                        tooltipped
+                                        ng-click="selectUsuario(usuario)"
+                                        data-position="top" 
+                                        data-delay="50" 
+                                        data-tooltip="Visualizar detalhes">
+                                        <i class="material-icons">reorder</i>
+                                    </button>
+								</a>
+								
+								<a class="btn-floating yellow darken-2 marginButton" 
+                                    tooltipped
+								    data-position="top" 
+								    data-delay="50" 
+								    data-tooltip="Editar"
+								    href="#/usuarios/alteracao/{{usuario.id}}">
+									<i class="material-icons">mode_edit</i>
+								</a>
+                               
+                                <a modal href="#modalExclusao">
+                                    <button class="btn-floating red marginButton" 
+                                        tooltipped
+                                        ng-click="selectUsuario(usuario)"        
+                                        data-position="top" 
+                                        data-delay="50" 
+                                        data-tooltip="Excluir">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                </a>
+                                
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+				<div class="row center">
+                    <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+				</div>
+			</div>
+		</div>
+		
+		<div id="modalExclusao" class="modal">
+            <div class="modal-content">
+                <h4>Deseja realmente excluir o seguinte usuário?</h4>
+                <br>
+                <p><strong>Nome Completo:</strong> {{usuarioSelected.nomeCompleto}}</p>
+                <p><strong>Login:</strong> {{usuarioSelected.login}}</p>
+                <p><strong>Tipo Usuário:</strong> {{labelTipo(usuarioSelected.tipoUsuario)}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" 
+                   class="modal-action modal-close waves-effect waves-grey #b71c1c red darken-4 btn" 
+                    ng-click="excluirUsuario(usuarioSelected)">Excluir</button>
+                <a href="#/usuarios" class="modal-action modal-close waves-effect waves-grey btn-flat">Cancelar</a>
+            </div>
+        </div>
+        
+        
+        <div id="modalDetalhamento" class="modal">
+            <div class="modal-content">
+                <h4>Dados do usuário</h4>
+                <br>
+                <p><strong>Nome Completo:</strong> {{usuarioSelected.nomeCompleto}}</p>
+                <p><strong>Login:</strong> {{usuarioSelected.login}}</p>
+                <p><strong>Tipo Usuário:</strong> {{labelTipo(usuarioSelected.tipoUsuario)}}</p>
+            </div>
+            <div class="modal-footer">
+                <button href="#/usuarios" class="modal-action modal-close waves-effect blue lighten-2 btn">Voltar</button>
+            </div>
+        </div>
+        
+        
+	</div> 
+
+</div>  

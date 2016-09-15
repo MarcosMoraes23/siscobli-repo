@@ -1,0 +1,132 @@
+/* --------------- Configuração Body Padrão ------------------ */
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+    background-color: #bdbdbd ;
+}
+
+
+.alturaCabecalho
+{
+	height: 100px;
+}
+
+td{
+    padding-right: 20px;
+}
+
+/* ----------------------------------------------------------- */
+
+
+/* ----------------------- Inserindo a cor azul no Foco dos inputs ------------------------------ */
+
+.input-field input[type=date]:focus+label, .input-field input[type=text]:focus+label,
+.input-field input[type=email]:focus+label, .input-field input[type=password]:focus+label,
+.active
+{
+	color: #2196f3 !important;
+}
+
+.input-field input[type=date]:focus, .input-field input[type=text]:focus,
+.input-field input[type=email]:focus, .input-field input[type=password]:focus,
+.input-field input[type=number]:focus, .input-field input[type=date]:focus
+{
+	border-bottom: 2px solid #2196f3;
+	box-shadow: none;
+}
+
+/* ----------------------------------------------------------------------------------------------- */
+
+
+/*------------------------- Fontes ---------------------------- */
+
+.title-text{
+    font-family: 'Poiret One', cursive;
+}
+
+.subtitle-text{
+    font-family: 'Poiret One', cursive;
+}
+
+/* ----------------------------------------------------------- */
+
+
+/* ------Alterando a cor das palavras no selectMenu ---------- */
+#selectMenu span
+{
+   color: #2196f3 !important; 
+}
+/* ----------------------------------------------------------- */
+
+
+/* ----- Configuração da tag <main> para incluir rodapé ------ */
+main {
+    flex: 1 0 auto;
+}
+/* ----------------------------------------------------------- */
+
+
+/* -------------- Espaçamento entre botões ------------------- */
+.marginButton{
+  margin-left: 6px;
+}
+
+.marginButtonTop{
+    margin-top: 60px;
+}
+/* ----------------------------------------------------------- */
+
+
+
+/* ----------- Cor Vermelho no radio "indisponível" ---------- */
+
+[type="radio"].indisponivel:checked + label:before {
+  border-radius: 50%;
+  border: 2px solid #F44336;
+}
+
+[type="radio"].indisponivel:checked + label:after {
+  border-radius: 50%;
+  border: 2px solid #F44336;
+  background-color: #F44336;
+  z-index: 0;
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+}
+
+/* ----------------------------------------------------------- */
+
+
+/* --------------------- Removendo Sppiners ------------------ */
+
+input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+/* ----------------------------------------------------------- */
+
+
+/* --------------------- Removendo new da etiqueta disponivel------------------ */
+span.badge.new::after {
+    content: none;
+}
+
+span.badge.new {
+    position: inherit;
+}
+/* ----------------------------------------------------------- */
+
+
+/* --------------------- Pagination Color------------------ */
+.pagination li.active {
+    background-color: #1565C0;
+}
+
+/* ----------------------------------------------------------- */

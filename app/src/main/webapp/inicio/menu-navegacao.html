@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <ul id="slide-out" class="side-nav #f5f5f5 grey lighten-4">
+        <li><a href="#/inicio">Início</a></li>
+        <li><a href="#/">Biblioteca</a></li>
+        <li><a href="#/">Emprétimos</a></li>
+        <li><a href="#/">Reservas</a></li>
+        <li><a href="#/usuarios">Usuários</a></li>
+        <li class="divider"></li>
+        <li><a href="#/">Alterar Senha</a></li>
+        <li class="divider"></li>
+        <li><a href="#/">Sair</a></li>
+        <li class="divider"></li>
+    </ul>
+<div class="navbar">
+    <nav id="nav-bar" class="#0d47a1 blue darken-4">
+        <div class="nav-wrapper #0d47a1 blue darken-4">
+            <ul class="left">
+                <li class="hide-on-med-and-down"><a href="#/inicio">Início</a></li>
+                <li class="hide-on-med-and-down">
+                    <a class='dropdown-button #0d47a1 blue darken-4'
+                        dropdown
+                        data-activates='bibliotecaDropdown' 
+                        data-hover="true">Biblioteca 
+                    </a>
+                       <!-- Dropdown Structure -->
+                    <ul id='bibliotecaDropdown' class='dropdown-content'>
+                        <li><a class="#0d47a1 blue-text text-darken-4" href="#/livros">Livro</a></li>
+                        <li><a class="#0d47a1 blue-text text-darken-4" href="#/dvds">Dvds</a></li>
+                        <li><a class="#0d47a1 blue-text text-darken-4" href="#/emprestimos">Periódicos</a></li>
+                    </ul>
+                        
+                </li>
+                
+                <li class="hide-on-med-and-down"><a href="#/">Empréstimos</a></li>
+                <li class="hide-on-med-and-down"><a href="#/">Reservas</a></li>
+                <li class="hide-on-med-and-down"><a href="#/turmas">Turmas</a></li>
+                <li class="hide-on-med-and-down"><a href="#/usuarios">Usuários</a></li>
+                
+                
+
+                <li class="hide-on-large-only"><a class="button-collapse" 
+                                                    data-activates="slide-out" 
+                                                    data-sidenav="left"
+                                                    data-closeonclick="true">
+                <i class="material-icons right">menu</i></a></li>
+            </ul>
+            <ul class="right">
+                <li class="right hide-on-med-and-down"><a href="#/">Sair</a></li>
+                <li class="center hide-on-med-and-down">Bem Vindo (a), {{usuarioLogado.nomeCompleto}} !</li>
+            </ul>
+        </div>
+    </nav>
+</div>
+</div>
