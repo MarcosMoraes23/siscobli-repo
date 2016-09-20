@@ -2,47 +2,46 @@
 
     'use strict';
     
-    function livroInicioController ($scope, livroService) {
+    function periodicoInicioController ($scope, periodicoService) {
 
-        $scope.listLivros = [];
-        $scope.livroSelected = {};
+        $scope.listPeriodicos = [];
+        $scope.periodicoSelected = {};
         
-        
-        $scope.selectLivro = function(livro){
+        $scope.selectPeriodico = function(periodico){
             
-            $scope.livroSelected = livro;
+            $scope.periodicoSelected = periodico;
             
         }
         
         
-        $scope.findAllLivros = function(){
+        $scope.findAllPeriodicos = function(){
             
-            var $promise = livroService.get.findAllLivros();
+            var $promise = periodicoService.get.findAllPeriodicos();
             
             $promise
                 .success(function(response){
                     console.log(response);
-                    $scope.listLivros = response.entity;
+                    $scope.listPeriodicos = response.entity;
                 })
             
                 .error(function(response){
                     console.log(response);
-                    var $toastContent = $('<span>Ocorreu um erro ao buscar livros.</span>');
+                    var $toastContent = $('<span>Ocorreu um erro ao buscar periodicos.</span>');
                     Materialize.toast($toastContent, 3000);
                 });
         }
         
         
-        $scope.excluirLivro = function(livro){
+        $scope.excluirPeriodico = function(periodico){
             
-            var $promise = livroService.delete(livro);
+            var $promise = periodicoService.delete(periodico);
 
             $promise
             .success(function(response){
                 var $toastContent = $('<span>' + response.mensagemRetorno + '</span>');
                     Materialize.toast($toastContent, 3000);
 
-                $scope.findAllLivros();
+                $scope.findAllPeriodicos();
 
             })
 
@@ -53,7 +52,7 @@
                         
         }
         
-        $scope.findAllLivros();
+        $scope.findAllPeriodicos();
     
     }
 
@@ -61,12 +60,13 @@
     
   var deps = [
     '$scope',
-    'livroService',  
-    livroInicioController
+    'periodicoService',  
+    periodicoInicioController
   ];
 
   angular.module('siscobli')
-  .controller('livroInicioController',deps);
+  .controller('periodicoInicioController',deps);
 
    
 })();
+

@@ -2,43 +2,44 @@
 
     'use strict';
     
-    function livroAlteracaoController ($scope, $stateParams, $state, livroService) {
+    function periodicoAlteracaoController ($scope, $stateParams, $state, periodicoService) {
 
-        $scope.formLivro = {};
-
-        $scope.findLivro = function(){
+        $scope.formPeriodico = {};
+        
+        
+        $scope.findPeriodico = function(){
             
-            var $promise = livroService.get.findLivro($stateParams.id);
+            var $promise = periodicoService.get.findPeriodico($stateParams.id);
         
             $promise
                 .success(function(response){
-                    $scope.formLivro = response.entity;
+                    $scope.formPeriodico = response.entity;
                     
-                    console.log($scope.formLivro);
+                    console.log($scope.formPeriodico);
                 
                     if(response.entity === null){
-                        var $toastContent = $('<span>Livro inexistente, favor verificar!</span>');
+                        var $toastContent = $('<span>Periódico inexistente, favor verificar!</span>');
                         Materialize.toast($toastContent, 3000);    
                     }
                 })
             
                 .error(function(response){
-                    var $toastContent = $('<span>Ocorreu um erro interno ao buscar livro!</span>');
+                    var $toastContent = $('<span>Ocorreu um erro interno ao buscar periodico!</span>');
                     Materialize.toast($toastContent, 3000);
                 });
         };
         
         
-        $scope.alterarLivro = function(formLivro){
+        $scope.alterarPeriodico = function(formPeriodico){
                 
-            var $promise = livroService.put($stateParams.id, formLivro);
+            var $promise = periodicoService.put($stateParams.id, formPeriodico);
                 
             $promise
                 .success(function(response){
                     var $toastContent = $('<span>' + response.mensagemRetorno + '</span>');
                         Materialize.toast($toastContent, 2000);
 
-                    $state.go('home.publicacoes.livros');
+                    $state.go('home.publicacoes.periodicos');
 
                 })
 
@@ -50,7 +51,7 @@
         
         
         $scope.limparCampos = function(){
-            $scope.formLivro = {
+            $scope.formPeriodico = {
                 descricao: "",
                 autor: "",
                 numeroPaginas: "",
@@ -64,7 +65,7 @@
         };
         
         
-        $scope.findLivro();
+        $scope.findPeriodico();
     
     }
 
@@ -74,12 +75,12 @@
     '$scope',
     '$stateParams',
     '$state',
-    'livroService',  
-    livroAlteracaoController
+    'periodicoService',  
+    periodicoAlteracaoController
   ];
 
   angular.module('siscobli')
-  .controller('livroAlteracaoController',deps);
+  .controller('periodicoAlteracaoController',deps);
 
    
 })();

@@ -3,9 +3,31 @@ body {
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
-    background-color: #bdbdbd ;
+    background-color: #bdbdbd;
+    
 }
 
+/* --------------- SCROLLBAR ------------------ */
+::-webkit-scrollbar-track
+{
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 8px;
+    background-color: #323232;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+/* --------------- /SCROLLBAR ------------------ */
 
 .alturaCabecalho
 {
@@ -32,7 +54,7 @@ td{
 .input-field input[type=email]:focus, .input-field input[type=password]:focus,
 .input-field input[type=number]:focus, .input-field input[type=date]:focus
 {
-	border-bottom: 2px solid #2196f3;
+	border-bottom: 1px solid #2196f3;
 	box-shadow: none;
 }
 
@@ -130,3 +152,44 @@ span.badge.new {
 }
 
 /* ----------------------------------------------------------- */
+
+
+/* --------------------- Tabs Color------------------ */
+.tabs .tab a {
+    color: #1565C0 !important;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: color .28s ease;
+}
+
+.tabs .indicator {
+    height: 3px;
+    background-color: #1565C0 !important;
+}
+/* ----------------------------------------------------------- */
+
+.invalid-messages-fields{
+    color: #2196f3; /*#F44336*/
+    font-size: 12px;
+    margin-top: -10px;
+}
+
+/*input.ng-invalid.ng-touched{
+    border-bottom: 2px solid #F44336;
+	box-shadow: none;
+}*/
+
+.btn.disabled, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled, .btn-large:disabled, .btn-large:disabled, .btn-floating:disabled {
+    background-color: #DFDFDF !important;
+    box-shadow: none;
+    color: #9F9F9F !important;
+    cursor: not-allowed;
+}
+
+.progressForms{
+    bottom: 9px;
+    margin-bottom: -10px;
+}

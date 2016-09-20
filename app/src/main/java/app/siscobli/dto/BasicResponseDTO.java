@@ -27,7 +27,6 @@ public class BasicResponseDTO implements Serializable {
 
 	public BasicResponseDTO(BusinessCode businessCode, Object entity) {
 		super();
-		this.status = businessCode.getCodigo();
 		this.mensagemRetorno = businessCode.getMensagem();
 		this.entity = entity;
 	}

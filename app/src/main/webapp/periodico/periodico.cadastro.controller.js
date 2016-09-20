@@ -2,54 +2,45 @@
 
     'use strict';
     
-    function livroCadastroController ($scope, $state, livroService) {
+    function periodicoCadastroController ($scope, $state, periodicoService) {
 
-        $scope.formLivro = {
+        $scope.formPeriodico = {
             descricao: "",
-            autor: "",
-            isbn: "",
-            numeroPaginas: "",
             categoria: "",
+            dataLancamento: "",
             disponibilidade: true,
-            edicao: "",
             quantidadeReal: "",
             quantidadeExemplares: "",
-            dataLancamento: "",
-            nomeEditora: ""
+            edicao: ""
         };
         
-        $scope.cadastrarLivro = function(formLivro){
+        $scope.cadastrarPeriodico = function(formPeriodico){
             
-            var $promise = livroService.post(formLivro);
+            var $promise = periodicoService.post(formPeriodico);
             
             $promise
                 .success(function(response){
                     var $toastContent = $('<span>' + response.mensagemRetorno + '</span>');
                         Materialize.toast($toastContent, 2000);
-                    $state.go('home.publicacoes.livros');
+                    $state.go('home.publicacoes.periodicos');
                 
                 })
             
                 .error(function(response){
-                    $scope.showLoading = false;
                     var $toastContent = $('<span>' + response.mensagemRetorno + '</span>');
                     Materialize.toast($toastContent, 3000);
                 });    
         };
         
         $scope.limparCampos = function(){
-            $scope.formLivro = {
+            $scope.formPeriodico = {
                 descricao: "",
-                autor: "",
-                isbn: "",
-                numeroPaginas: "",
                 categoria: "",
+                dataLancamento: "",
                 disponibilidade: true,
-                edicao: "",
                 quantidadeReal: "",
                 quantidadeExemplares: "",
-                dataLancamento: "",
-                nomeEditora: ""
+                edicao: ""
             };
         };
         
@@ -59,12 +50,12 @@
   var deps = [
     '$scope',
     '$state',
-    'livroService',  
-    livroCadastroController
+    'periodicoService',  
+    periodicoCadastroController
   ];
 
   angular.module('siscobli')
-  .controller('livroCadastroController',deps);
+  .controller('periodicoCadastroController',deps);
 
    
 })();

@@ -15,36 +15,37 @@
               .state("login", {
                 url: "/",
                 views: {
-                    "content":{
+                    "starterContent":{
                         templateUrl: "login/login.html",
                         controller : "loginController"
                     }
                 }
               })
 
-            .state("menu-navegacao", {
-                url: "/inicio",
+            .state("home", {
+                url: "/home",
                 views: {
-                    "menu":{
-                        templateUrl: "inicio/menu-navegacao.html",
-                        controller : "inicioController"
+                    "starterContent":{
+                        templateUrl: "home/home.html"
                     },
-
-                    "content":{
-                        templateUrl: "inicio/inicio-content.html",
-                        controller : "inicioController"
+                    
+                    "mainContent":{
+                        templateUrl: "home/home-content.html"
                     }
                 }
               })
+            
+            /*.state("home.content", {
+                url: "/home",
+                views: {
+                    
+                }
+              })*/
 
-            .state("usuarios", {
+            .state("home.usuarios", {
                 url: "/usuarios",
                 views: {
-                    "menu":{
-                        templateUrl: "inicio/menu-navegacao.html",
-                        controller : "inicioController"
-                    },
-                    "content":{
+                    "mainContent":{
                         templateUrl: "usuario/lista.html",
                         controller : "usuarioInicioController"
                     }
@@ -52,28 +53,20 @@
               })
             
             
-            .state("usuarios_cadastro", {
-                url: "/usuarios/cadastro",
+            .state("home.usuarios.cadastro", {
+                url: "/cadastro",
                 views: {
-                    "menu":{
-                        templateUrl: "inicio/menu-navegacao.html",
-                        controller : "inicioController"
-                    },
-                    "content":{
+                    "mainContent@home":{
                         templateUrl: "usuario/cadastro.html",
                         controller : "usuarioCadastroController"
                     }
                 }
               })
             
-            .state("usuarios_alteracao", {
-                url: "/usuarios/alteracao/:id",
+            .state("home.usuarios.alteracao", {
+                url: "/editar/:id",
                 views: {
-                    "menu":{
-                        templateUrl: "inicio/menu-navegacao.html",
-                        controller : "inicioController"
-                    },
-                    "content":{
+                    "mainContent@home":{
                         templateUrl: "usuario/alteracao.html",
                         controller : "usuarioAlteracaoController"
                     }
@@ -81,14 +74,20 @@
               })
             
             
-            .state("livros", {
+            .state("home.publicacoes", {
+                url: "/publicacoes",
+                views: {
+                    "mainContent@home":{
+                        templateUrl: "publicacao/publicacao.html",
+                        controller : "publicacaoController"
+                    }
+                }
+              })
+            
+            .state("home.publicacoes.livros", {
                 url: "/livros",
                 views: {
-                    "menu":{
-                        templateUrl: "inicio/menu-navegacao.html",
-                        controller : "inicioController"
-                    },
-                    "content":{
+                    "publicacaoContent":{
                         templateUrl: "livro/lista.html",
                         controller : "livroInicioController"
                     }
@@ -96,65 +95,140 @@
               })
             
             
-            .state("livros_cadastro", {
-                url: "/livros/cadastro",
+            .state("home.publicacoes.livros.cadastro", {
+                url: "/cadastro",
                 views: {
-                    "menu":{
-                        templateUrl: "inicio/menu-navegacao.html",
-                        controller : "inicioController"
-                    },
-                    "content":{
+                    "mainContent@home":{
                         templateUrl: "livro/cadastro.html",
                         controller : "livroCadastroController"
                     }
                 }
-              })
+            })
             
             
-            .state("livros_alteracao", {
-                url: "/livros/alteracao/:id",
+            .state("home.publicacoes.livros.alteracao", {
+                url: "/editar/:id",
                 views: {
-                    "menu":{
-                        templateUrl: "inicio/menu-navegacao.html",
-                        controller : "inicioController"
-                    },
-                    "content":{
+                    "mainContent@home":{
                         templateUrl: "livro/alteracao.html",
                         controller : "livroAlteracaoController"
                     }
                 }
-              })
+            })
             
             
-            .state("turmas", {
+            .state("home.publicacoes.dvds", {
+                url: "/dvds",
+                views: {
+                    "publicacaoContent":{
+                        templateUrl: "dvd/lista.html",
+                        controller : "dvdInicioController"
+                    }
+                }
+            })
+            
+            .state("home.publicacoes.dvds.alteracao", {
+                url: "/editar/:id",
+                views: {
+                    "mainContent@home":{
+                        templateUrl: "dvd/alteracao.html",
+                        controller : "dvdAlteracaoController"
+                    }
+                }
+            })
+            
+            
+            .state("home.publicacoes.dvds.cadastro", {
+                url: "/cadastro",
+                views: {
+                    "mainContent@home":{
+                        templateUrl: "dvd/cadastro.html",
+                        controller : "dvdCadastroController"
+                    }
+                }
+            })
+            
+            
+            
+            .state("home.publicacoes.periodicos", {
+                url: "/periodicos",
+                views: {
+                    "publicacaoContent":{
+                        templateUrl: "periodico/lista.html",
+                        controller : "periodicoInicioController"
+                    }
+                }
+            })
+            
+            
+            .state("home.publicacoes.periodicos.alteracao", {
+                url: "/editar/:id",
+                views: {
+                    "mainContent@home":{
+                        templateUrl: "periodico/alteracao.html",
+                        controller : "periodicoAlteracaoController"
+                    }
+                }
+            })
+            
+            
+            .state("home.publicacoes.periodicos.cadastro", {
+                url: "/cadastro",
+                views: {
+                    "mainContent@home":{
+                        templateUrl: "periodico/cadastro.html",
+                        controller : "periodicoCadastroController"
+                    }
+                }
+            })
+            
+            
+            .state("home.turmas", {
                 url: "/turmas",
                 views: {
-                    "menu":{
-                        templateUrl: "inicio/menu-navegacao.html",
-                        controller : "inicioController"
-                    },
-                    "content":{
+                    "mainContent":{
                         templateUrl: "turma/lista.html",
                         controller : "turmaInicioController"
                     }
                 }
+            })
+            
+            
+            .state("home.turmas.cadastro", {
+                url: "/cadastro",
+                views: {
+                    "mainContent@home":{
+                        templateUrl: "turma/cadastro.html",
+                        controller : "turmaCadastroController"
+                    }
+                }
+            })
+            
+            
+            .state("home.turmas.alteracao", {
+                url: "/editar/:id",
+                views: {
+                    "mainContent@home":{
+                        templateUrl: "turma/alteracao.html",
+                        controller : "turmaAlteracaoController"
+                    }
+                }
               })
             
-            
-            .state("turma_cadastro", {
-                url: "/turmas/cadastro",
+              
+              .state("dvds", {
+                url: "/dvds",
                 views: {
                     "menu":{
                         templateUrl: "inicio/menu-navegacao.html",
                         controller : "inicioController"
                     },
                     "content":{
-                        templateUrl: "turma/cadastro.html",
-                        controller : "turmaCadastroController"
+                        templateUrl: "dvd/lista.html",
+                        controller : "dvdInicioController"
                     }
                 }
               })
-            
         
             $locationProvider.html5Mode(false);
         

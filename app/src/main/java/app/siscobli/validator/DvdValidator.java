@@ -1,5 +1,6 @@
 package app.siscobli.validator;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,8 @@ public class DvdValidator {
 	}
 
 	private void validarDvdDuplicado(Dvd dvd) {
-		if ((!repository.findByDescricao(dvd.getDescricao()).isEmpty())) {
+		Dvd dvdEncontrado = repository.findByDescricao(dvd.getDescricao());
+		if (!(dvdEncontrado == null) && dvdEncontrado.getId() != dvd.getId()) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_DVD_DUPLICADO, dvd));
 		}
 	}
@@ -39,12 +41,29 @@ public class DvdValidator {
 		if (dvd.getQuantidadeReal() == null) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_DVD_QUANTIDADE_REAL_VAZIO, dvd));
 		}
+		else if (dvd.getQuantidadeReal() == 0 || dvd.getQuantidadeReal() < 0) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_QUANTIDADE_REAL_ZERADA, dvd));
+		}
 	}
+	
 	private void validarQuatidadeExemplaresVazia(Dvd dvd) {
 		if (dvd.getQuantidadeExemplares()== null) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_DVD_QUANTIDADE_EXEMPLARES_VAZIO, dvd));
 		}
 	}
+	
+	public void validarDataFutura(Dvd dvd) {
+		if (dvd.getDataLancamento() != null && dvd.getDataLancamento().after(new DateTime().toDate())) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_DATA_FUTURA, dvd));
+		}
+	}
+	
+	private void validarQuantidadeRealExemplares(Dvd dvd) {
+		if (dvd.getQuantidadeExemplares() > dvd.getQuantidadeReal()) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_REAL_EXEMPLARES, dvd));
+		}
+	}
+	
 	
 	public void validarDvdInsercao(Dvd dvd)
 	{
@@ -53,5 +72,18 @@ public class DvdValidator {
 		validarCategoriaVazia(dvd);
 		validarQuatidadeExemplaresVazia(dvd);
 		validarQuatidadeRealVazia(dvd);
+		validarDataFutura(dvd);
+		validarQuantidadeRealExemplares(dvd);
+	}
+	
+	public void validarDvdEdicao(Dvd dvd)
+	{
+		validarDvdDuplicado(dvd);
+		validarTituloVazio(dvd);
+		validarCategoriaVazia(dvd);
+		validarQuatidadeRealVazia(dvd);
+		validarQuatidadeExemplaresVazia(dvd);
+		validarDataFutura(dvd);
+		validarQuantidadeRealExemplares(dvd);
 	}
 }

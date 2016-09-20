@@ -1,118 +1,131 @@
-<div class="container">
-	<div class="z-depth-3 white row" style="margin-top:40px; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
-
-		<div class="row center title-text" style="margin-bottom: -20px"><h1>DVDs</h1></div>
-		
-		<div class="row right">
-			<a class="btn tooltipped waves-effect waves-light #0d47a1 blue darken-3" data-delay="50" data-tooltip="Cadastrar Novo Livro" type="button" href="../dvd/cadastro.html" >Novo</a>
-		</div>
-			
-		<div class="row" style="margin-bottom: 45px;">
-		  <div class="col s12">
-			<div class="col s4">
-			   <label class="text-black">Tipo de Publicação:</label>
-				<select class="input-field">
-					<option value="" disabled selected>Selecione um item</option>
-					<option value="1">Livro</option>
-					<option value="2">Periódico</option>
-					<option value="3">DVD</option>
-				</select>
-			</div>
-
-				<div class="input-field col s4 right" style="margin-top:40px; padding: 0px -1px 0px 48px;">
-					<label for="pesquisa">Pesquisa</label>
-					<input id="pesquisa" type="text" maxlength="256" style="width: 85%;">
-					<a class="right btn-floating black"><i class="material-icons">search</i></a>
-				</div>
-			</div>
-		</div>
+<div class="row center title-text" style="margin-top: 82px"><h1>DVDs</h1></div>
+<div class="row" style="margin-top: 20px">
+    <div class="col s12">
+       <div class="col s6">
+       <a style="margin-top: 24px" class="btn waves-effect waves-light #0d47a1 blue darken-3" tooltipped data-position="top" data-delay="50" data-tooltip="Cadastrar novo DVD" type="button" ui-sref="home.publicacoes.dvds.cadastro" >Novo</a>
+      </div>
+        <div class="input-field col s5" style="padding: 0px -1px 0px 48px;">
+            <label for="pesquisa">Pesquisa</label>
+            <input id="pesquisa" ng-model="pesquisa" type="text" maxlength="256">
+        </div>
+        <div class="col s1 right">
+            <a style="margin-top:15px" class=" btn-floating #323232 grey darken-3"><i class="material-icons">search</i></a>
+        </div>
+    </div>
+</div>
 
 
-		<div class="row">
-			<div class="col s12">
+<div class="row">
+    <div class="col s12">
+        <table class="highlight responsive-table">
 
-				<table class="highlight responsive-table">
+            <thead>
+                <tr>
+                    <th>
+                        Título
+                    </th>
+                    <th>
+                        Categoria
+                    </th>
+                    <th class="center">
+                        Disponibilidade
+                    </th>
+                    <th class="center">
+                        Ações
+                    </th>
+                </tr>
+            </thead>
 
-					<thead>
-						<tr>
-							<th>
-								Título
-							</th>
-							<th>
-								Categoria
-							</th>
-							<th>
-								Disponibilidade
-							</th>
-							<th style="text-align: center;">
-								Ações
-							</th>
-						</tr>
-					</thead>
+            <tbody>
+                <tr class="animate-repeat" dir-paginate="dvd in listDvds |filter:pesquisa |itemsPerPage:5">
+                    <td>{{dvd.descricao}}</td>
+                    <td>{{dvd.categoria}}</td>
+                    <td class="center">
+                        <span class="new badge red center"  ng-hide="{{dvd.disponibilidade}}">Indisponível</span>
+                        <span class="new badge green center" ng-show="{{dvd.disponibilidade}}">Disponível</span>
+                    </td>
+                    <td style="text-align: center;">
+                        <a class="btn-floating orange darken-1 marginButton" tooltipped data-position="top" data-delay="50" data-tooltip="Reservar">
+                            <i class="material-icons">work</i>
+                        </a>
+                        <a class="btn-floating green darken-4 marginButton" tooltipped data-position="top" data-delay="50" data-tooltip="Emprestar">
+                            <i class="material-icons">open_in_browser</i>
+                        </a>
 
-					<tbody>
-						<tr>
-							<td>X - MEN</td>
-							<td>Ação</td>
-							<td>Diponível</td>
-							<td style="text-align: center;">
-								<a class="btn-floating tooltipped orange darken-1 marginButton" data-position="top" data-delay="50" data-tooltip="Reservar">
-									<i class="material-icons">work</i>
-								</a>
-								<a class="btn-floating tooltipped green darken-4 marginButton" data-position="top" data-delay="50" data-tooltip="Emprestar">
-									<i class="material-icons">open_in_browser</i>
-								</a>
-								<a class="btn-floating tooltipped blue lighten-2 marginButton" data-position="top" data-delay="50" data-tooltip="Detalhar">
-									<i class="material-icons">reorder</i>
-								</a>
-								<a class="btn-floating tooltipped yellow darken-2 marginButton" data-position="top" data-delay="50" data-tooltip="Editar">
-									<i class="material-icons">mode_edit</i>
-								</a>
-								<a class="btn-floating tooltipped red marginButton" data-position="top" data-delay="50" data-tooltip="Excluir">
-									<i class="material-icons">delete</i>
-								</a>
-							</td>
-						</tr>
-						 <tr>
-							<td>As Aventuras de PI</td>
-							<td>Aventura</td>
-							<td>Diponível</td>
-							<td style="text-align: center;">
-								<a class="btn-floating tooltipped orange darken-1 marginButton" data-position="top" data-delay="50" data-tooltip="Reservar">
-									<i class="material-icons">work</i>
-								</a>
-								<a class="btn-floating tooltipped green darken-4 marginButton" data-position="top" data-delay="50" data-tooltip="Emprestar">
-									<i class="material-icons">open_in_browser</i>
-								</a>
-								<a class="btn-floating tooltipped blue lighten-2 marginButton" data-position="top" data-delay="50" data-tooltip="Detalhar">
-									<i class="material-icons">reorder</i>
-								</a>
-								<a class="btn-floating tooltipped yellow darken-2 marginButton" data-position="top" data-delay="50" data-tooltip="Editar">
-									<i class="material-icons">mode_edit</i>
-								</a>
-								<a class="btn-floating tooltipped red marginButton" data-position="top" data-delay="50" data-tooltip="Excluir">
-									<i class="material-icons">delete</i>
-								</a>
-							</td>
-						</tr>
-						
-					</tbody>
+                         <a modal href="#modalDetalhamento">
+                            <button class="btn-floating blue lighten-2 marginButton"  
+                                tooltipped
+                                ng-click="selectDvd(dvd)"
+                                data-position="top" 
+                                data-delay="50" 
+                                data-tooltip="Visualizar detalhes">
+                                <i class="material-icons">reorder</i>
+                            </button>
+                        </a>
 
-				</table>
-				<div class="row center">
-					<ul class="pagination">
-						<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-						<li class="active blue darken-4"><a href="#!">1</a></li>
-						<li class="waves-effect"><a href="#!">2</a></li>
-						<li class="waves-effect"><a href="#!">3</a></li>
-						<li class="waves-effect"><a href="#!">4</a></li>
-						<li class="waves-effect"><a href="#!">5</a></li>
-						<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-					</ul>
-				</div>
+                        <a ui-sref="home.publicacoes.dvds.alteracao({id: {{dvd.id}} })">
+                            <button class="btn-floating yellow darken-2 marginButton" 
+                                tooltipped 
+                                data-position="top" 
+                                data-delay="50" 
+                                data-tooltip="Editar">
+                                <i class="material-icons">mode_edit</i>
+                            </button>
+                        </a>
 
-			</div>
-		</div>
-	</div> 
+                        <a modal href="#modalExclusao">
+                            <button class="btn-floating red marginButton" 
+                                tooltipped
+                                ng-click="selectDvd(dvd)"        
+                                data-position="top" 
+                                data-delay="50" 
+                                data-tooltip="Excluir">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
 
-</div>  
+            </tbody>
+
+        </table>
+        <div class="row center">
+            <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+        </div>
+
+
+        <div id="modalExclusao" class="modal">
+            <div class="modal-content">
+                <h4>Deseja realmente excluir o seguinte DVD?</h4>
+                <br>
+                <p><strong>Título:</strong> {{dvdSelected.descricao}}</p>
+                <p><strong>Categoria:</strong> {{dvdSelected.categoria}}</p>
+                <p><strong>Quantidade real:</strong> {{dvdSelected.quantidadeReal}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" 
+                   class="modal-action modal-close waves-effect waves-grey #b71c1c red darken-4 btn" 
+                    ng-click="excluirDvd(dvdSelected)">Excluir</button>
+                <a ui-sref="home.publicacoes.dvds" class="modal-action modal-close waves-effect waves-grey btn-flat">Cancelar</a>
+            </div>
+        </div>
+
+
+        <div id="modalDetalhamento" class="modal">
+            <div class="modal-content">
+                <h4>Dados do dvd</h4>
+                <br>
+                <p><strong>Título:</strong> {{dvdSelected.descricao}}</p>
+                <p><strong>Categoria:</strong> {{dvdSelected.categoria}}</p>
+                <p><strong>Data de lançamento:</strong> {{dvdSelected.dataLancamento}}</p>
+                <p><strong>Disponibilidade:</strong> {{dvdSelected.disponivel}}</p>
+                <p><strong>Quantidade real:</strong> {{dvdSelected.quantidadeReal}}</p>
+                <p><strong>Quantidade de exemplares:</strong> {{dvdSelected.quantidadeExemplares}}</p>
+                <p><strong>Classificação etária:</strong> {{dvdSelected.classificacao}}</p>
+            </div>
+            <div class="modal-footer">
+                <button ui-sref="home.publicacoes.dvds" class="modal-action modal-close waves-effect blue lighten-2 btn">Voltar</button>
+            </div>
+        </div>
+    </div>
+</div>

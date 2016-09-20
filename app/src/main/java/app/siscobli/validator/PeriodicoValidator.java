@@ -1,5 +1,6 @@
 package app.siscobli.validator;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,8 @@ public class PeriodicoValidator {
 	}
 
 	private void validarPeriodicoDuplicado(Periodico periodico) {
-		if ((!repository.findByDescricao(periodico.getDescricao()).isEmpty())) {
+		Periodico periodicoEncontrado = repository.findByDescricao(periodico.getDescricao());
+		if (!(periodicoEncontrado == null) && periodico.getId() != periodicoEncontrado.getId()) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_PERIODICO_DUPLICADO, periodico));
 		}
 	}
@@ -38,6 +40,9 @@ public class PeriodicoValidator {
 	private void validarQuatidadeRealVazia(Periodico periodico) {
 		if (periodico.getQuantidadeReal() == null) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_DVD_QUANTIDADE_REAL_VAZIO, periodico));
+		}
+		else if (periodico.getQuantidadeReal() == 0 || periodico.getQuantidadeReal() < 0) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_QUANTIDADE_REAL_ZERADA, periodico));
 		}
 	}
 	
@@ -58,6 +63,19 @@ public class PeriodicoValidator {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_PERIODICO_EDICAO_VAZIA, periodico));
 		}
 	}
+	
+	public void validarDataFutura(Periodico periodico) {
+		if (periodico.getDataLancamento() != null && periodico.getDataLancamento().after(new DateTime().toDate())) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_DATA_FUTURA, periodico));
+		}
+	}
+	
+	private void validarQuantidadeRealExemplares(Periodico periodico) {
+		if (periodico.getQuantidadeExemplares() > periodico.getQuantidadeReal()) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_REAL_EXEMPLARES, periodico));
+		}
+	}
+	
 	public void validarPeriodicoInsercao(Periodico periodico)
 	{
 		validarPeriodicoDuplicado(periodico);
@@ -67,5 +85,20 @@ public class PeriodicoValidator {
 		validarQuatidadeRealVazia(periodico);
 		validarDataLancamentoVazia(periodico);
 		validarEdicaoVazia(periodico);
+		validarDataFutura(periodico);
+		validarQuantidadeRealExemplares(periodico);
+	}
+	
+	public void validarPeriodicoEdicao(Periodico periodico)
+	{
+		validarPeriodicoDuplicado(periodico);
+		validarTituloVazio(periodico);
+		validarCategoriaVazia(periodico);
+		validarDataLancamentoVazia(periodico);
+		validarQuatidadeRealVazia(periodico);
+		validarQuatidadeExemplaresVazia(periodico);
+		validarEdicaoVazia(periodico);
+		validarDataFutura(periodico);
+		validarQuantidadeRealExemplares(periodico);
 	}
 }

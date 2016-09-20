@@ -34,12 +34,13 @@ public class UsuarioService {
 
 	public Usuario atualizar(Usuario usuario) {
 		if (!isObjetoVazio(usuario)) {
-
-			validator.validarUsuarioInsercao(usuario);
+		
+			validator.validarUsuarioEdicao(usuario);
 
 			usuario.setSenha(EncryptUtils.encriptarMD5(usuario.getSenha()));
 			usuario.setSenha(usuario.getSenha());
 
+			
 			return repository.save(usuario);
 		}
 		return null;

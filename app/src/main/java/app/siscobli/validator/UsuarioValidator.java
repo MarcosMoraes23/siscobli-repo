@@ -6,8 +6,11 @@ import org.springframework.stereotype.Service;
 import app.siscobli.dto.BasicResponseDTO;
 import app.siscobli.enums.BusinessCode;
 import app.siscobli.enums.EnumStatusEmprestimo;
+import app.siscobli.enums.EnumStatusReserva;
+import app.siscobli.enums.EnumTipoUsuario;
 import app.siscobli.exception.ValidacaoException;
 import app.siscobli.model.Emprestimo;
+import app.siscobli.model.Reserva;
 import app.siscobli.model.Usuario;
 import app.siscobli.repository.UsuarioRepository;
 
@@ -21,7 +24,8 @@ public class UsuarioValidator{
 	private UsuarioRepository repository;
 	
 	private void validarLoginExistente(Usuario usuario) {
-		if (repository.findByLogin(usuario.getLogin()) == null) {
+		Usuario usuarioEncontrado = repository.findByLogin(usuario.getLogin());
+		if (!(usuarioEncontrado == null) && usuario.getId() != usuarioEncontrado.getId()) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_USUARIO_LOGIN_EXISTENTE, usuario));
 		}
 	}
@@ -50,6 +54,12 @@ public class UsuarioValidator{
 		}
 	}
 	
+	private void validarTipoUsuarioInvalido(Usuario usuario) {
+		if (usuario.getTipoUsuario().equals(EnumTipoUsuario.I)) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_TIPO_USUARIO_INVALIDO, usuario));
+		}
+	}
+	
 	private void validarTamanhoSenha(Usuario usuario) {
 		if (usuario.getSenha().length() < 8) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_USUARIO_SENHA_MIN, usuario));
@@ -59,24 +69,47 @@ public class UsuarioValidator{
 	}
 	
 	public void validarUsuarioInsercao(Usuario usuario)
-	{
-		validarLoginExistente(usuario);
-		validarLoginVazio(usuario);
+	{	
 		validarNomeVazio(usuario);
+		validarLoginVazio(usuario);
+		validarLoginExistente(usuario);
 		validarSenhaVazia(usuario);
 		validarTamanhoSenha(usuario);
 		validarTipoUsuarioVazio(usuario);
+		validarTipoUsuarioInvalido(usuario);
 	}
+	
+	public void validarUsuarioEdicao(Usuario usuario)
+	{
+		validarNomeVazio(usuario);
+		validarLoginVazio(usuario);
+		validarLoginExistente(usuario);
+		validarSenhaVazia(usuario);
+		validarTamanhoSenha(usuario);
+		validarTipoUsuarioVazio(usuario);
+		validarTipoUsuarioInvalido(usuario);
+	}
+	
+	
 	
 	public void validarUsuarioExclusao(Usuario usuario)
 	{
 		validarUsuarioEmprestimo(usuario);
+		validarUsuarioReserva(usuario);
 	}
 	
 	private void validarUsuarioEmprestimo(Usuario usuario) {
 		for (Emprestimo key : usuario.getEmprestimos()) {
 			if (key.getStatusEmprestimo().equals(EnumStatusEmprestimo.A)) {
 				throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_EXCLUSAO_USUARIO_EMPRESTIMO_ATIVO, usuario));
+			}
+		}
+	}
+	
+	private void validarUsuarioReserva(Usuario usuario) {
+		for (Reserva key : usuario.getReservas()) {
+			if (key.getStatus().equals(EnumStatusReserva.A)) {
+				throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_EXCLUSAO_USUARIO_RESERVA_ATIVA, usuario));
 			}
 		}
 	}

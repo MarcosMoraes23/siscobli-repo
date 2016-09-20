@@ -20,6 +20,7 @@ public class DvdService {
 
 	public Dvd salvar(Dvd dvd) {
 		if (!isObjetoVazio(dvd)) {
+			validator.validarDvdInsercao(dvd);
 			return repository.save(dvd);
 		}
 		return null;
@@ -27,19 +28,8 @@ public class DvdService {
 
 	public Dvd atualizar(Dvd dvd) {
 		if (!isObjetoVazio(dvd)) {
-			Dvd currentDvd = repository.findOne(dvd.getId());
-
-			currentDvd.setDescricao(dvd.getDescricao());
-			currentDvd.setDataLancamento(dvd.getDataLancamento());
-			currentDvd.setCategoria(dvd.getCategoria());
-			currentDvd.setDisponibilidade(dvd.getDisponibilidade());
-			currentDvd.setQuantidadeExemplares(dvd.getQuantidadeExemplares());
-			currentDvd.setQuantidadeReal(dvd.getQuantidadeReal());
-			currentDvd.setReservas(dvd.getReservas());
-			currentDvd.setEmprestimos(dvd.getEmprestimos());
-			currentDvd.setClassificacao(dvd.getClassificacao());
-			validator.validarDvdInsercao(currentDvd);
-			return repository.save(currentDvd);
+			validator.validarDvdEdicao(dvd);
+			return repository.save(dvd);
 		}
 		return null;
 	}
@@ -47,7 +37,6 @@ public class DvdService {
 	public void excluir(Long id) {
 		Dvd currentDvd = repository.findOne(id);
 		if (!isObjetoVazio(currentDvd)) {
-			validator.validarDvdInsercao(currentDvd);
 			repository.delete(currentDvd);
 		}
 	}

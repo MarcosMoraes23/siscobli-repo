@@ -1,29 +1,26 @@
 <div class="container">
 	<div class="z-depth-3 white row" style="margin-top:40px; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 
-		<div class="row">
+		<div class="row" style="margin-bottom: -20px">
 				<div class="col s12 center title-text">
 					<h1>Usuários do Sistema</h1>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col s7">
-					<a 
-                        class="btn tooltipped waves-effect waves-light #0d47a1 blue darken-3" 
-					    tooltipped
-					    data-position="top" 
-					    data-delay="50" 
-					    data-tooltip="Cadastrar novo usuário" 
-					    type="button"
-					    href="#/usuarios/cadastro">Novo</a>
-				</div>  
+			<div class="row"  style="margin-top: 20px">
+				<div class="col s12">
+                   <div class="col s6">
+                   <a style="margin-top: 24px" class="btn waves-effect waves-light #0d47a1 blue darken-3" tooltipped data-position="top" data-delay="50" data-tooltip="Cadastrar novo usuário" type="button" ui-sref="home.usuarios.cadastro" >Novo</a>
+                  </div>
+                    <div class="input-field col s5" style="padding: 0px -1px 0px 48px;">
+                        <label for="pesquisa">Pesquisa</label>
+                        <input id="pesquisa" ng-model="pesquisa" type="text" maxlength="256">
 
-				<div class="input-field col s5 right">
-					<label for="pesquisa" >Pesquisa</label>
-					<input id="pesquisa" ng-model="pesquisa" type="text" maxlength="256" style="width: 88%;">
-					<a class="right btn-floating #323232 grey darken-3"><i class="material-icons">search</i></a>
-				</div>
+                    </div>
+                    <div class="col s1 right">
+                        <a style="margin-top:15px" class=" btn-floating #323232 grey darken-3"><i class="material-icons">search</i></a>
+                    </div>
+                </div>
 			</div>
 
 
@@ -72,7 +69,7 @@
 								    data-position="top" 
 								    data-delay="50" 
 								    data-tooltip="Editar"
-								    href="#/usuarios/alteracao/{{usuario.id}}">
+								    ui-sref="home.usuarios.alteracao({ id: {{usuario.id}} })">
 									<i class="material-icons">mode_edit</i>
 								</a>
                                

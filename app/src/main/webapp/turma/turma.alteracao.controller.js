@@ -2,43 +2,42 @@
 
     'use strict';
     
-    function livroAlteracaoController ($scope, $stateParams, $state, livroService) {
+    function turmaAlteracaoController ($scope, $stateParams, $state, turmaService) {
 
-        $scope.formLivro = {};
-
-        $scope.findLivro = function(){
-            
-            var $promise = livroService.get.findLivro($stateParams.id);
+        $scope.formTurma = {};
         
+        
+        $scope.findTurma = function(){
+            
+            var $promise = turmaService.get.findTurma($stateParams.id);
+            
             $promise
                 .success(function(response){
-                    $scope.formLivro = response.entity;
+                    $scope.formTurma = response.entity;
                     
-                    console.log($scope.formLivro);
-                
                     if(response.entity === null){
-                        var $toastContent = $('<span>Livro inexistente, favor verificar!</span>');
+                        var $toastContent = $('<span>Turma inexistente, favor verificar!</span>');
                         Materialize.toast($toastContent, 3000);    
                     }
                 })
             
                 .error(function(response){
-                    var $toastContent = $('<span>Ocorreu um erro interno ao buscar livro!</span>');
+                    var $toastContent = $('<span>Ocorreu um erro interno ao buscar turma!</span>');
                     Materialize.toast($toastContent, 3000);
                 });
         };
         
         
-        $scope.alterarLivro = function(formLivro){
+        $scope.alterarTurma = function(formTurma){
                 
-            var $promise = livroService.put($stateParams.id, formLivro);
-                
+            var $promise = turmaService.put($stateParams.id, formTurma);
+
             $promise
                 .success(function(response){
                     var $toastContent = $('<span>' + response.mensagemRetorno + '</span>');
                         Materialize.toast($toastContent, 2000);
 
-                    $state.go('home.publicacoes.livros');
+                    $state.go('home.turmas');
 
                 })
 
@@ -49,22 +48,17 @@
         };
         
         
+        
         $scope.limparCampos = function(){
-            $scope.formLivro = {
+            $scope.formTurma = {
                 descricao: "",
-                autor: "",
-                numeroPaginas: "",
-                categoria: "",
-                disponibilidade: true,
-                edicao: "",
-                quantidadeReal: "",
-                dataLancamento: "",
-                nomeEditora: ""
+                serie: "",
+                grauEnsino: ""
             }
         };
         
         
-        $scope.findLivro();
+        $scope.findTurma();
     
     }
 
@@ -74,12 +68,12 @@
     '$scope',
     '$stateParams',
     '$state',
-    'livroService',  
-    livroAlteracaoController
+    'turmaService',  
+    turmaAlteracaoController
   ];
 
   angular.module('siscobli')
-  .controller('livroAlteracaoController',deps);
+  .controller('turmaAlteracaoController',deps);
 
    
 })();

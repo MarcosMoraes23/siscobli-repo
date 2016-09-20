@@ -1,6 +1,9 @@
 <div class="container">
-    <div class="z-depth-3 white row" style="margin-top:20px; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+    <div class="z-depth-3 white row" style="margin-top:40px; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
         <div class="row">
+            <div ng-show="showLoading" class="progress progressForms grey lighten-4">
+                <div class="indeterminate #0d47a1 blue darken-3"></div>
+            </div>
             <div class="col s12 center title-text">
                 <h1>Alterar Usuário</h1>
             </div>
@@ -45,19 +48,19 @@
                                 <option value="" disabled selected>Selecione um tipo</option>
                                 <option value="A">Aluno(a)</option>
                                 <option value="SU">Supervisor(a)</option>
-                                <option value="B">BibliotecÃ¡rio(a)</option>
+                                <option value="B">Bibliotecário(a)</option>
                                 <option value="SE">Servidor(a)</option>
                                 <option value="P">Professor(a)</option>
                                 <option value="D">Diretor(a)</option>
                             </select>
                             
-                            <label for="tipoPublicacao" class="#000000 text-black">Tipo de UsuÃ¡rio</label>
+                            <label for="tipoPublicacao" class="#000000 text-black">Tipo de Usuário</label>
                         </div>
                     </div>
 
                     <div class="right">
                         <a class="waves-effect waves-light btn grey" ng-click="limparCampos()">Limpar</a>
-                        <a class="waves-effect waves-light btn" href="#/usuarios">Voltar</a>
+                        <a class="waves-effect waves-light btn" ui-sref="home.usuarios">Voltar</a>
                         <button type="submit" class="waves-effect waves-light btn green lighten-1"><i class="material-icons right">done_all</i>Confirmar</button>
                     </div>                           
                 </form>

@@ -1,26 +1,24 @@
 <div class="container">
-   <div class="z-depth-3 white row" style="margin-top:20px; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+   <div class="z-depth-3 white row" style="margin-top:40px; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 		<div class="row">
 			<div class="col s12 center title-text">
 				<h1>Cadastrar Livro</h1>
 			</div>
 
 		</div>
-
-
 		<div class="row">
 
 			<div class="col s12">
 
 				<div class="row">
 
-						<form class="col s12">
+						<form ng-model="formLivro" ng-submit="cadastrarLivro(formLivro)" class="col s12">
 
 						  <div class="row">
 							<div class="input-field col s12">
 								<i class="material-icons prefix">view_week</i>
-							  <input id="titulo" type="text" maxlength="256">
-							  <label for="titulo">Título</label>
+							  <input ng-model="formLivro.descricao" id="descricao" type="text" maxlength="256">
+							  <label for="descricao">Título</label>
 							</div>
 						   </div>
 							
@@ -28,18 +26,18 @@
 					
 								<div class="input-field col s6">
 									<i class="material-icons prefix">contacts</i>
-								  <input id="autores" type="text" maxlength="128">
-								  <label for="autores">Autor(es)</label>
+								  <input ng-model="formLivro.autor" id="autor" type="text" maxlength="128">
+								  <label for="autor">Autor(es)</label>
 								</div>
 
 								<div class="input-field col s4" style="paddin">
-								  <input id="isbn" type="text" maxlength="128">
+								  <input ng-model="formLivro.isbn" id="isbn" type="text" maxlength="128">
 								   <label for="isbn">ISBN</label>
 								</div>
 
 								<div class="input-field col s2">
-								  <input id="numPaginas" type="number" maxlength="128">
-								  <label for="numPaginas">N° de Páginas</label>
+								  <input ng-model="formLivro.numeroPaginas" id="numeroPaginas" type="number" maxlength="128">
+								  <label for="numeroPaginas">N° de Páginas</label>
 								</div>
 							</div>
 							
@@ -48,20 +46,21 @@
 								
 								<div class="input-field col s7">
 									<i class="material-icons prefix">grade</i>
-								  <input id="categoria" type="text" maxlength="128">
+								  <input ng-model="formLivro.categoria" id="categoria" type="text" maxlength="128">
 								  <label for="categoria">Categoria</label>
 								</div>
 							   
 								<div class="input-field col s3">
-								  <input id="ano" type="number" maxlength="128">
+								  <input ng-model="formLivro.ano" id="ano" type="number" maxlength="128">
 								  <label for="ano">Ano</label>
 								</div>
 								
 							   <div class="col s2 right" style="padding: 16px;">
-								   <input class="with-gap" name="grupo1" type="radio" id="disponivel" checked/>
+								   <input ng-model="formLivro.disponibilidade" class="with-gap" name="grupo1" type="radio" id="disponivel" ng-value="true" checked/>
 									   <label for="disponivel">Disponível</label>
-								   <input class="with-gap indisponivel" name="grupo1" type="radio" id="indisponivel"  />
-										<label for="indisponivel">Indisponível</label>
+									   
+								   <input ng-model="formLivro.disponibilidade" class="with-gap indisponivel" name="grupo1" type="radio" id="indisponivel" ng-value="false"/>
+								   <label for="indisponivel">Indisponível</label>
 							   </div>
 								
 							</div>
@@ -70,45 +69,33 @@
 
 								<div class="input-field col s3">
 									<i class="material-icons prefix">label</i>
-								  <input id="edicao" type="number" maxlength="128">
+								  <input ng-model="formLivro.edicao" id="edicao" type="number" maxlength="128">
 								  <label for="edicao">Edição</label>
 								</div>
 								
 								<div class="input-field col s3">
-								  <input id="qtdReal" type="text" maxlength="128">
-								   <label for="qtdReal">Quantidade Real</label>
+								  <input ng-model="formLivro.quantidadeReal" id="quantidadeReal" type="text" maxlength="128">
+								   <label for="quantidadeReal">Quantidade Real</label>
 								</div>
 
 								<div class="input-field col s3">
-								  <input id="qtdExemplares" type="number" maxlength="128">
-								  <label for="qtdExemplares">Quantidade de Exemplares</label>
+								  <input ng-model="formLivro.quantidadeExemplares" id="quantidadeExemplares" type="number" maxlength="128">
+								  <label for="quantidadeExemplares">Quantidade de Exemplares</label>
 								</div>
 								
 								<div class="input-field col s3">
-								  <input input-date
-                                    type="text"
-                                    ng-model="dataLancamento"
-                                    format="dd/mm/yyyy"
-                                    months-full="{{ month }}"
-                                    months-short="{{ monthShort }}"
-                                    weekdays-full="{{ weekdaysFull }}"
-                                    weekdays-short="{{ weekdaysShort }}"
-                                    weekdays-letter="{{ weekdaysLetter }}"
-                                    today="today"
-                                    first-day="1"
-                                    clear="clear"
-                                    close="close"
-                                    select-years="15"
+								  <input type="date"
+                                    ng-model="formLivro.dataLancamento"
 								    id="dataLancamento" 
 								    maxlength="10">
-								  <label for="dataLancamento">Data de Lançamento</label>
+								 <!-- <label for="dataLancamento">Data de Lançamento</label>-->
 								</div>
 								
 							</div>
 							
 							<div class="row">
 								<div class="input-field col s9 ">
-								  <input id="editora" type="text" maxlength="128">
+								  <input ng-model="formLivro.editora.nomeEditora" id="editora" type="text" maxlength="128">
 								  <label for="editora">Editora</label>
 								</div>
 								
@@ -119,8 +106,8 @@
 						
 						  <div class="row" style="margin-top: 70px;">
 							<div style="float: right">
-								<a class="waves-effect waves-light btn grey marginButton">Limpar</a>
-								<a class="waves-effect waves-light btn marginButton" href="#/livros">Voltar</a>
+								<a ng-click="limparCampos()" class="waves-effect waves-light btn grey marginButton">Limpar</a>
+								<a class="waves-effect waves-light btn marginButton" ui-sref="home.publicacoes.livros">Voltar</a>
 								<button type="submit" class="waves-effect waves-light btn green lighten-1 marginButton">
 									<i class="material-icons right">done_all</i>Confirmar</button>
 							</div>         

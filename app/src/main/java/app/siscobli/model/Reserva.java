@@ -47,6 +47,7 @@ public class Reserva implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Reserva.class)
 	private Usuario usuario;
 
 	@ManyToOne

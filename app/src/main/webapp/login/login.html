@@ -13,28 +13,28 @@
 
                 <h5 class="subtitle-text">Entre em sua conta</h5>
 
-                <form id="formLogin" ng-submit="efetuarLogin(formLogin)" method="POST">
+                <form name="formLogin" ng-submit="efetuarLogin(formLogin)" method="POST">
                     <div class="row">
                         <div class="col s12"></div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <input ng-model="formLogin.login" type="text" id="login"/>
-                            <label for='login'>Seu Usuário</label>
+                            <input ng-model="formLogin.login" name="loginN" type="text" id="loginI" required/>
+                            <label for='loginI'>Seu Usuário</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <input ng-model="formLogin.senha" type="password" id="senha"/> 
-                            <label for='senha'>Sua senha</label>
+                            <input ng-model="formLogin.senha" name="senhaN" type="password" id="senhaI" required/> 
+                            <label for='senhaI'>Sua senha</label>
                         </div>
                     </div>
 
                     <br />
                         <div class="row">
-                            <button type="submit" name="btn_login"
+                            <button ng-disabled="formLogin.$invalid" type="submit" name="btn_login"
                                 class="col s12 btn btn-large waves-effect #0d47a1 blue darken-3">Login</button>
                         </div>
                 </form>

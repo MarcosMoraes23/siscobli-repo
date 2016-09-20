@@ -16,6 +16,10 @@
         <link rel="stylesheet" href="recursos/css/style.css">
     <!-- /MATERIALIZE .CSS-->
     
+    <!-- SCROLL BAR .CSS-->
+        <script src="jquery.csb.min.js"></script>
+    <!-- /SCROLL BAR .CSS-->
+    
     <!-- MATERIALIZE .JS -->
         <script type="text/javascript" src="recursos/js/jquery-2-2-1.js"></script>
         <script type="text/javascript" src="recursos/materialize/js/materialize.min.js"></script>
@@ -40,6 +44,10 @@
         <script type="text/javascript" src="usuario/usuario.alteracao.controller.js"></script>
 	<!-- /USUÁRIO .JS-->
 	
+	<!-- PUBLICAÇÃO .JS-->
+        <script type="text/javascript" src="publicacao/publicacao.controller.js"></script>
+	<!-- /PUBLICAÇÃO .JS-->
+	
 	<!-- LIVRO .JS-->
         <script type="text/javascript" src="livro/livro.service.js"></script>
         <script type="text/javascript" src="livro/livro.inicio.controller.js"></script>
@@ -51,29 +59,35 @@
         <script type="text/javascript" src="turma/turma.service.js"></script>
         <script type="text/javascript" src="turma/turma.inicio.controller.js"></script>
         <script type="text/javascript" src="turma/turma.cadastro.controller.js"></script>
+        <script type="text/javascript" src="turma/turma.alteracao.controller.js"></script>
 	<!-- /TURMA .JS-->
+	
+	<!-- DVD .JS-->
+        <script type="text/javascript" src="dvd/dvd.service.js"></script>
+        <script type="text/javascript" src="dvd/dvd.inicio.controller.js"></script>
+        <script type="text/javascript" src="dvd/dvd.cadastro.controller.js"></script>
+        <script type="text/javascript" src="dvd/dvd.alteracao.controller.js"></script>
+	<!-- /DVD .JS-->
+	
+	
+    <!-- PERIÓDICO .JS-->
+        <script type="text/javascript" src="periodico/periodico.service.js"></script>
+        <script type="text/javascript" src="periodico/periodico.inicio.controller.js"></script>
+        <script type="text/javascript" src="periodico/periodico.cadastro.controller.js"></script>
+        <script type="text/javascript" src="periodico/periodico.alteracao.controller.js"></script>
+	<!-- /PERIÓDICO .JS-->
 	
 	<!-- LOGIN .JS-->
         <script type="text/javascript" src="login/login.service.js"></script>
         <script type="text/javascript" src="login/login.controller.js"></script>
 	<!-- /LOGIN .JS-->
 	
-	<!-- INÍCIO .JS-->
-        <script type="text/javascript" src="inicio/inicio.controller.js"></script>
-	<!-- /INÍCIO .JS-->
-	
 	<base href="/app/">
 	
 </head>
 <body>
       
-    <header>
-        <div ui-view="menu"></div>
-    </header>
-   	
-    <main>
-        <div ui-view="content"></div>
-    </main>
+    <div ui-view="starterContent"></div>
 
 </body>
 </html>

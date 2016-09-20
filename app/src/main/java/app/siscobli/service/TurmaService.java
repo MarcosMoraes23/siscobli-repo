@@ -20,7 +20,7 @@ public class TurmaService {
 	
 	public Turma salvar(Turma turma) {
 		if (!isObjetoVazio(turma)) {
-			validator.validarDescricaoTurmaDuplicada(turma);
+			validator.validarTurmaInsercao(turma);
 			return repository.save(turma);
 		}
 		return null;
@@ -31,10 +31,10 @@ public class TurmaService {
 			Turma currentTurma = repository.findOne(turma.getId());
 
 			currentTurma.setDescricao(turma.getDescricao());
-			currentTurma.setGrauDeEnsino(turma.getGrauDeEnsino());
+			currentTurma.setGrauEnsino(turma.getGrauEnsino());
 			currentTurma.setSerie(turma.getSerie());
 			currentTurma.setAlunos(turma.getAlunos());
-			
+			validator.validarTurmaInsercao(turma);
 			return repository.save(currentTurma);
 		}
 		return null;

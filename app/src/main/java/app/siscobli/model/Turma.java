@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "TURMA")
 public class Turma implements Serializable {
@@ -26,12 +29,13 @@ public class Turma implements Serializable {
 	private Integer serie;
 
 	@Column(name = "GRAU_ENSINO", nullable = false, length = 32)
-	private String grauDeEnsino;
+	private String grauEnsino;
 
 	@Column(name = "DESCRICAO", nullable = false, length = 256)
 	private String descricao;
 
 	@OneToMany(mappedBy = "turma")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Turma.class)
 	private List<Aluno> alunos;
 
 	public Turma() {
@@ -53,12 +57,12 @@ public class Turma implements Serializable {
 		this.serie = serie;
 	}
 
-	public String getGrauDeEnsino() {
-		return grauDeEnsino;
+	public String getGrauEnsino() {
+		return grauEnsino;
 	}
 
-	public void setGrauDeEnsino(String grauDeEnsino) {
-		this.grauDeEnsino = grauDeEnsino;
+	public void setGrauEnsino(String grauEnsino) {
+		this.grauEnsino = grauEnsino;
 	}
 
 	public String getDescricao() {

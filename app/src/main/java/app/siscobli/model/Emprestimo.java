@@ -51,12 +51,12 @@ public class Emprestimo implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO")
-	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Usuario.class)
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Emprestimo.class)
 	private Usuario usuario;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_PUBLICACAO")
-	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Usuario.class)
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Emprestimo.class)
 	private Publicacao publicacao;
 
 	@OneToOne

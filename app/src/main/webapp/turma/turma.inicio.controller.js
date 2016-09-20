@@ -5,15 +5,21 @@
     function turmaInicioController ($scope, turmaService) {
 
         $scope.listTurmas = [];
-
+        $scope.turmaSelected = {};
+        
+        $scope.selectTurma = function(turma){
+            
+            $scope.turmaSelected = turma;    
+        }
         
         $scope.findAllTurmas = function(){
             
-            var $promise = turmaService.get();
+            var $promise = turmaService.get.findAllTurmas();
             
             $promise
                 .success(function(response){
                     $scope.listTurmas = response.entity;
+                    console.log($scope.listTurmas);
                 })
             
                 .error(function(response){
@@ -30,15 +36,15 @@
 
             $promise
             .success(function(response){
-                var $toastContent = $('<span>Turma excluído com sucesso.</span>');
+                var $toastContent = $('<span>'+response.mensagemRetorno+'</span>');
                     Materialize.toast($toastContent, 3000);
 
                 $scope.findAllTurmas();
 
             })
 
-            .error(function(){
-                var $toastContent = $('<span>Ocorreu um erro ao excluir o turma.</span>');
+            .error(function(response){
+                var $toastContent = $('<span>'+response.mensagemRetorno+'</span>');
                 Materialize.toast($toastContent, 3000);
             });
                         

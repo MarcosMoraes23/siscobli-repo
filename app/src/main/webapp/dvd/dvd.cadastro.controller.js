@@ -2,54 +2,47 @@
 
     'use strict';
     
-    function livroCadastroController ($scope, $state, livroService) {
+    function dvdCadastroController ($scope, $state, dvdService) {
 
-        $scope.formLivro = {
+        $scope.formDvd = {
             descricao: "",
-            autor: "",
-            isbn: "",
-            numeroPaginas: "",
             categoria: "",
             disponibilidade: true,
-            edicao: "",
             quantidadeReal: "",
             quantidadeExemplares: "",
             dataLancamento: "",
-            nomeEditora: ""
+            classificacaoEtaria: ""
         };
         
-        $scope.cadastrarLivro = function(formLivro){
+        $scope.cadastrarDvd = function(formDvd){
             
-            var $promise = livroService.post(formLivro);
+            console.log(formDvd);
+            
+            var $promise = dvdService.post(formDvd);
             
             $promise
                 .success(function(response){
                     var $toastContent = $('<span>' + response.mensagemRetorno + '</span>');
                         Materialize.toast($toastContent, 2000);
-                    $state.go('home.publicacoes.livros');
+                    $state.go('home.publicacoes.dvds');
                 
                 })
             
                 .error(function(response){
-                    $scope.showLoading = false;
                     var $toastContent = $('<span>' + response.mensagemRetorno + '</span>');
                     Materialize.toast($toastContent, 3000);
                 });    
         };
         
         $scope.limparCampos = function(){
-            $scope.formLivro = {
+            $scope.formDvd = {
                 descricao: "",
-                autor: "",
-                isbn: "",
-                numeroPaginas: "",
                 categoria: "",
                 disponibilidade: true,
-                edicao: "",
                 quantidadeReal: "",
                 quantidadeExemplares: "",
                 dataLancamento: "",
-                nomeEditora: ""
+                classificacaoEtaria: ""
             };
         };
         
@@ -59,12 +52,12 @@
   var deps = [
     '$scope',
     '$state',
-    'livroService',  
-    livroCadastroController
+    'dvdService',  
+    dvdCadastroController
   ];
 
   angular.module('siscobli')
-  .controller('livroCadastroController',deps);
+  .controller('dvdCadastroController',deps);
 
    
 })();

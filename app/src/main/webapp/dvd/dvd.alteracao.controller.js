@@ -2,43 +2,44 @@
 
     'use strict';
     
-    function livroAlteracaoController ($scope, $stateParams, $state, livroService) {
+    function dvdAlteracaoController ($scope, $stateParams, $state, dvdService) {
 
-        $scope.formLivro = {};
-
-        $scope.findLivro = function(){
+        $scope.formDvd = {};
+        
+        
+        $scope.findDvd = function(){
             
-            var $promise = livroService.get.findLivro($stateParams.id);
+            var $promise = dvdService.get.findDvd($stateParams.id);
         
             $promise
                 .success(function(response){
-                    $scope.formLivro = response.entity;
+                    $scope.formDvd = response.entity;
                     
-                    console.log($scope.formLivro);
+                    console.log($scope.formDvd);
                 
                     if(response.entity === null){
-                        var $toastContent = $('<span>Livro inexistente, favor verificar!</span>');
+                        var $toastContent = $('<span>Dvd inexistente, favor verificar!</span>');
                         Materialize.toast($toastContent, 3000);    
                     }
                 })
             
                 .error(function(response){
-                    var $toastContent = $('<span>Ocorreu um erro interno ao buscar livro!</span>');
+                    var $toastContent = $('<span>Ocorreu um erro interno ao buscar dvd!</span>');
                     Materialize.toast($toastContent, 3000);
                 });
         };
         
         
-        $scope.alterarLivro = function(formLivro){
+        $scope.alterarDvd = function(formDvd){
                 
-            var $promise = livroService.put($stateParams.id, formLivro);
+            var $promise = dvdService.put($stateParams.id, formDvd);
                 
             $promise
                 .success(function(response){
                     var $toastContent = $('<span>' + response.mensagemRetorno + '</span>');
                         Materialize.toast($toastContent, 2000);
 
-                    $state.go('home.publicacoes.livros');
+                    $state.go('home.publicacoes.dvds');
 
                 })
 
@@ -50,7 +51,7 @@
         
         
         $scope.limparCampos = function(){
-            $scope.formLivro = {
+            $scope.formDvd = {
                 descricao: "",
                 autor: "",
                 numeroPaginas: "",
@@ -64,7 +65,7 @@
         };
         
         
-        $scope.findLivro();
+        $scope.findDvd();
     
     }
 
@@ -74,12 +75,12 @@
     '$scope',
     '$stateParams',
     '$state',
-    'livroService',  
-    livroAlteracaoController
+    'dvdService',  
+    dvdAlteracaoController
   ];
 
   angular.module('siscobli')
-  .controller('livroAlteracaoController',deps);
+  .controller('dvdAlteracaoController',deps);
 
    
 })();

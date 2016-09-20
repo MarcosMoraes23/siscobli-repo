@@ -68,7 +68,7 @@
 		<!-- <dependency> -->
 		<!-- <groupId>org.springframework.boot</groupId> -->
 		<!-- <artifactId>spring-boot-starter-security</artifactId> -->
-		<!-- </dependency> -->
+		<!-- </dependency> asd -->
 
 		<dependency>
 			<groupId>org.jasypt</groupId>
@@ -130,8 +130,8 @@
 			<!-- Use this profile for any OpenShift specific customization your app 
 				will need. -->
 			<!-- By default that is to put the resulting archive into the 'webapps' 
-				folder. -->
-			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+				folder.. -->
+			<!-- te http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>openshift</id>
 			<build>
 				<finalName>app</finalName>

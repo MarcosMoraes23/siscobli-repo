@@ -32,9 +32,9 @@ public class Livro extends Publicacao implements Serializable {
 	@Column(name = "EDICAO", length = 4)
 	private Integer edicao;
 
-	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Livro.class)
 	@ManyToOne
 	@JoinColumn(name = "ID_EDITORA")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Livro.class)
 	private Editora editora;
 
 	public Livro() {

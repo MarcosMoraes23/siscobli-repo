@@ -2,7 +2,7 @@ function usuarioService($http, APP_CONFIG){
     
     var urlApi = APP_CONFIG.API_REST + '/usuarios';
     
-    function cadastrarUsuario(formUsuario){     
+    function cadastrarUsuario(formUsuario){
         return $http.post(urlApi, formUsuario);
      };
     

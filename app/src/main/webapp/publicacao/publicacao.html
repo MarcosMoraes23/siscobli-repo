@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="z-depth-3 white row" style="margin-top:40px; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
+        <div class="col s12">
+            <ul tabs style="margin-top: 20px;" class="#fafafa grey lighten-5">
+                
+                <li class="tab col s4 waves-effect waves">
+                    <a id="livroTab" ng-click="changePublicacao('livros'); selectTab()" href="#livro">Livro</a>    
+                </li>
+                
+                <li class="tab col s4 waves-effect wave">
+                    <a id="dvdTab" ng-click="changePublicacao('dvds'); selectTab()" href="#dvd">DVD</a>                
+                </li>
+                
+                <li class="tab col s4 waves-effect waves">
+                    <a id="periodicoTab" ng-click="changePublicacao('periodicos'); selectTab()"  href="#periodico">Periódico</a>                
+                </li>
+            </ul>
+        </div>
+        
+        <div ui-view="publicacaoContent"></div>
+        
+    </div>
+</div>

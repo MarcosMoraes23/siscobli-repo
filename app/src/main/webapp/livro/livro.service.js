@@ -2,8 +2,13 @@ function livroService($http, APP_CONFIG){
     
     var urlApi = APP_CONFIG.API_REST + '/livros';
     
-    function cadastrarLivro(formLivro){     
+    function cadastrarLivro(formLivro){
+        console.log(formLivro);
         return $http.post(urlApi, formLivro);
+    };
+    
+    function alterarLivro(id , formLivro){     
+        return $http.put(urlApi + '/' + id, formLivro);
     };
     
     function findAllLivros(){
@@ -21,6 +26,7 @@ function livroService($http, APP_CONFIG){
     
     return{
         post: cadastrarLivro,
+        put: alterarLivro,
         get: {
             findAllLivros: findAllLivros,
             findLivro: findLivro

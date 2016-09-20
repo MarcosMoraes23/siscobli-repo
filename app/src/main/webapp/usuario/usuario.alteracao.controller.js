@@ -2,10 +2,13 @@
 
     'use strict';
     
-    function usuarioAlteracaoController ($scope, $stateParams, $location, usuarioService) {
+    function usuarioAlteracaoController ($scope, $stateParams, $state, usuarioService) {
 
         $scope.formUsuario = {};
         $scope.senhaAlteracao = "";
+        $scope.showLoading = false;
+        
+        
         $scope.findUsuario = function(){
             
             var $promise = usuarioService.get.findUsuario($stateParams.id);
@@ -28,9 +31,10 @@
         
         
         $scope.alterarUsuario = function(formUsuario){
-                
+            $scope.showLoading = true;
+            $('html, body').animate({scrollTop: 0}, 250, 'linear');
             if($scope.validarSenhas() != true){
-                
+                $scope.showLoading = false;
                 var $toastContent = $('<span>Senhas não coincidem, favor verificar!</span>');
                 Materialize.toast($toastContent, 3000);
                 $('#senha').focus();
@@ -43,14 +47,16 @@
                 
                 $promise
                     .success(function(response){
+                        $scope.showLoading = false;
                         var $toastContent = $('<span>' + response.mensagemRetorno + '</span>');
                             Materialize.toast($toastContent, 2000);
                     
-                        $location.path('usuarios');
+                        $state.go('home.usuarios');
 
                     })
 
                     .error(function(response){
+                        $scope.showLoading = false;
                         var $toastContent = $('<span>'+response.mensagemRetorno+'</span>');
                         Materialize.toast($toastContent, 3000);
                     });  
@@ -89,7 +95,7 @@
   var deps = [
     '$scope',
     '$stateParams',
-    '$location',
+    '$state',
     'usuarioService',  
     usuarioAlteracaoController
   ];

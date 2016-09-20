@@ -18,9 +18,36 @@ public class TurmaValidator {
 	public TurmaValidator() {
 	}
 
-	public void validarDescricaoTurmaDuplicada(Turma turma) {
-		if ((!repository.findByDescricao(turma.getDescricao()).isEmpty())) {
+	private void validarDescricaoTurmaDuplicada(Turma turma) {
+		Turma turmaEncontrada = repository.findByDescricao(turma.getDescricao());
+		if (!(turmaEncontrada == null) && turma.getId() != turmaEncontrada.getId()) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_TURMA_DESCRICAO_DUPLICADA, turma));
 		}
+	}
+	
+	private void validarDescricaoVazia(Turma turma) {
+		if(turma.getDescricao() == null || turma.getDescricao().equals("")){
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_TURMA_DESCRICAO_VAZIA, turma));
+		}
+	}
+	
+	private void validarSerieVazia(Turma turma) {
+		if(turma.getSerie() == null || turma.getSerie().equals("")){
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_TURMA_SERIE_VAZIA, turma));
+		}
+	}
+	
+	private void validarGrauEnsinoVazio(Turma turma) {
+		if(turma.getGrauEnsino() == null || turma.getGrauEnsino().equals("")){
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_TURMA_GRAU_ENSINO_VAZIO, turma));
+		}
+	}
+	
+	public void validarTurmaInsercao(Turma turma)
+	{
+		validarDescricaoTurmaDuplicada(turma);
+		validarDescricaoVazia(turma);
+		validarSerieVazia(turma);
+		validarGrauEnsinoVazio(turma);
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import app.siscobli.model.Periodico;
 import app.siscobli.repository.PeriodicoRepository;
+import app.siscobli.validator.PeriodicoValidator;
 
 @Service
 public class PeriodicoService {
@@ -14,8 +15,12 @@ public class PeriodicoService {
 	@Autowired
 	private PeriodicoRepository repository;
 	
+	@Autowired
+	private PeriodicoValidator validator;
+	
 	public Periodico salvar(Periodico periodico) {
 		if (!isObjetoVazio(periodico)) {
+			validator.validarPeriodicoInsercao(periodico);
 			return repository.save(periodico);
 		}
 		return null;
@@ -34,7 +39,7 @@ public class PeriodicoService {
 			currentPeriodico.setReservas(periodico.getReservas());
 			currentPeriodico.setEmprestimos(periodico.getEmprestimos());
 			currentPeriodico.setEdicao(periodico.getEdicao());
-			
+			validator.validarPeriodicoEdicao(currentPeriodico);
 			return repository.save(currentPeriodico);
 		}
 		return null;

@@ -2,11 +2,8 @@
 
     'use strict';
     
-    function loginController($scope, $location, $rootScope, loginService) {
+    function loginController($scope, $state, $rootScope, loginService) {
     
-        $scope.campoLoginValidado = false;
-        $scope.campoSenhaValidado = false;
-        $scope.pageTitle = "Login - SISCOBLI";
         $scope.showLoading = false;
            
         $scope.formLogin = {
@@ -18,7 +15,7 @@
         $scope.efetuarLogin = function (formLogin) {
             $scope.showLoading = true;
             var $promise = loginService.login(formLogin);
-
+            console.log(formLogin);
             $promise
                 .success(function(response){
                     $scope.showLoading = false;
@@ -29,7 +26,7 @@
                     var $toastContent = $('<span>'+ response.mensagemRetorno +'</span>');
                         Materialize.toast($toastContent, 1500);
                 
-                    $location.path("inicio");
+                    $state.go("home");
                 })
             
                 .error(function(response){
@@ -37,16 +34,14 @@
                 
                     var $toastContent = $('<span>'+ response.mensagemRetorno +'</span>');
                     Materialize.toast($toastContent, 3000);
-                });
-            
-            
+                });        
         };
 
     }
 
     var deps = [
         '$scope',
-        '$location',
+        '$state',
         '$rootScope',
         'loginService',
         loginController

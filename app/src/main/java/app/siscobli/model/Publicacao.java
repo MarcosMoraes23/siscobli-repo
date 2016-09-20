@@ -16,6 +16,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "PUBLICACAO")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -40,6 +43,12 @@ public abstract class Publicacao implements Serializable {
 	@Column(name = "CATEGORIA", length = 128)
 	private String categoria;
 
+	@Column(name = "QUANTIDADE_RESERVAS")
+	private Integer quantidadeReservas;
+
+	@Column(name = "QUANTIDADE_EMPRESTIMOS")
+	private Integer quantidadeEmprestimos;
+
 	@Column(name = "DISPONIBILIDADE")
 	private Boolean disponibilidade;
 
@@ -48,9 +57,11 @@ public abstract class Publicacao implements Serializable {
 	private Date dataLancamento;
 
 	@OneToMany(mappedBy = "publicacao")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Publicacao.class)
 	private List<Emprestimo> emprestimos;
 
 	@OneToMany(mappedBy = "publicacao")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Publicacao.class)
 	private List<Reserva> reservas;
 
 	public Publicacao() {
@@ -111,6 +122,22 @@ public abstract class Publicacao implements Serializable {
 
 	public void setDataLancamento(Date dataLancamento) {
 		this.dataLancamento = dataLancamento;
+	}
+
+	public Integer getQuantidadeReservas() {
+		return quantidadeReservas;
+	}
+
+	public void setQuantidadeReservas(Integer quantidadeReservas) {
+		this.quantidadeReservas = quantidadeReservas;
+	}
+
+	public Integer getQuantidadeEmprestimos() {
+		return quantidadeEmprestimos;
+	}
+
+	public void setQuantidadeEmprestimos(Integer quantidadeEmprestimos) {
+		this.quantidadeEmprestimos = quantidadeEmprestimos;
 	}
 
 	public List<Emprestimo> getEmprestimos() {

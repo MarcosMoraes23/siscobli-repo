@@ -7,7 +7,8 @@ public enum EnumTipoUsuario {
 	SE("Servidor"), 
 	SU("Supervisor"), 
 	P("Professor"), 
-	D("Diretor");
+	D("Diretor"),
+	I("Indefinido");
 
 	private String label;
 	

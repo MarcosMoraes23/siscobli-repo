@@ -32,7 +32,7 @@ public class LivroService {
 
 	public Livro atualizar(Livro livro) {
 		if (!isObjetoVazio(livro)) {
-			validator.validarLivroInsercao(livro);
+			validator.validarLivroEdicao(livro);
 			return repository.save(livro);
 		}
 		return null;

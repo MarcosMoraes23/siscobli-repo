@@ -2,7 +2,7 @@
 
     'use strict';
     
-    function turmaCadastroController ($scope, $location, turmaService) {
+    function turmaCadastroController ($scope, $state, turmaService) {
 
         $scope.formTurma = {
             descricao: "",
@@ -12,20 +12,18 @@
         
         $scope.cadastrarTurma = function(formTurma){
           
-            console.log(formTurma);
             var $promise = turmaService.post(formTurma);
-                
+            
             $promise
-                .success(function(){
-                    var $toastContent = $('<span>Turma cadastrada com sucesso.</span>');
+                .success(function(response){
+                    var $toastContent = $('<span>'+response.mensagemRetorno+'</span>');
                         Materialize.toast($toastContent, 2000);
-                    $location.path('turmas');
+                    $state.go('home.turmas');
                 
                 })
             
-                .error(function(){
-                    $scope.showLoading = false;
-                    var $toastContent = $('<span>Erro ao cadastrar turma, verifique os dados.</span>');
+                .error(function(response){
+                    var $toastContent = $('<span>'+response.mensagemRetorno+'</span>');
                     Materialize.toast($toastContent, 3000);
                 });    
         };
@@ -44,7 +42,7 @@
     
   var deps = [
     '$scope',
-    '$location',
+    '$state',
     'turmaService',  
     turmaCadastroController
   ];

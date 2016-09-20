@@ -1,5 +1,6 @@
 package app.siscobli.validator;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,16 @@ public class LivroValidator {
 	}
 	
 	
+	private void validarIsbnDuplicado(Livro livro) {
+		Livro livroEncontrado = repository.findByIsbn(livro.getIsbn());
+		if (!(livroEncontrado == null) && livroEncontrado.getId() != livro.getId()) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_ISBN_DUPLICADO, livro));
+		}
+	}
+	
 	private void validarLivroDuplicado(Livro livro) {
-		if ((!repository.findByIsbnAndDescricao(livro.getIsbn(),livro.getDescricao()).isEmpty())) {
+		Livro livroEncontrado = repository.findByIsbnAndDescricao(livro.getIsbn(),livro.getDescricao());
+		if (!(livroEncontrado == null) && livroEncontrado.getId() != livro.getId()) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_DUPLICADO, livro));
 		}
 	}
@@ -56,22 +65,55 @@ public class LivroValidator {
 		if (livro.getQuantidadeReal() == null) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_QUANTIDADE_REAL_VAZIO, livro));
 		}
+		else if (livro.getQuantidadeReal() == 0 || livro.getQuantidadeReal() < 0) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_QUANTIDADE_REAL_ZERADA, livro));
+		}
+		
 	}
 	
-	public void validarQuantidadeExemplaresVazia(Livro livro) {
+	private void validarQuantidadeExemplaresVazia(Livro livro) {
 		if (livro.getQuantidadeExemplares() == null) {
 			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_QUANTIDADE_EXEMPLARES_VAZIO, livro));
+		}
+	}
+
+	private void validarDataFutura(Livro livro) {
+		if (livro.getDataLancamento() != null && livro.getDataLancamento().after(new DateTime().toDate())) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_DATA_FUTURA, livro));
+		}
+	}
+	
+	private void validarQuantidadeRealExemplares(Livro livro) {
+		if (livro.getQuantidadeExemplares() > livro.getQuantidadeReal()) {
+			throw new ValidacaoException(BasicResponseDTO.createResponse(BusinessCode.ERRO_LIVRO_REAL_EXEMPLARES, livro));
 		}
 	}
 	
 	public void validarLivroInsercao(Livro livro)
 	{
+		validarDescricaoVazia(livro);
 		validarLivroDuplicado(livro);
 		validarAutorVazio(livro);
-		validarDescricaoVazia(livro);
 		validarIsbnVazio(livro);
+		validarIsbnDuplicado(livro);
 		validarNumeroPaginasVazio(livro);
-		validarQuantidadeExemplaresVazia(livro);
 		validarQuantidadeRealVazia(livro);
+		validarDataFutura(livro);
+		validarQuantidadeExemplaresVazia(livro);
+		validarQuantidadeRealExemplares(livro);
+	}
+	
+	
+	public void validarLivroEdicao(Livro livro)
+	{
+		validarDescricaoVazia(livro);
+		validarAutorVazio(livro);
+		validarIsbnVazio(livro);
+		validarIsbnDuplicado(livro);
+		validarNumeroPaginasVazio(livro);
+		validarQuantidadeRealVazia(livro);
+		validarDataFutura(livro);
+		validarQuantidadeExemplaresVazia(livro);
+		validarQuantidadeRealExemplares(livro);
 	}
 }

@@ -2,47 +2,47 @@
 
     'use strict';
     
-    function livroInicioController ($scope, livroService) {
+    function dvdInicioController ($scope, dvdService) {
 
-        $scope.listLivros = [];
-        $scope.livroSelected = {};
+        $scope.listDvds = [];
+        $scope.dvdSelected = {};
         
         
-        $scope.selectLivro = function(livro){
+        $scope.selectDvd = function(dvd){
             
-            $scope.livroSelected = livro;
+            $scope.dvdSelected = dvd;
             
         }
         
         
-        $scope.findAllLivros = function(){
+        $scope.findAllDvds = function(){
             
-            var $promise = livroService.get.findAllLivros();
+            var $promise = dvdService.get.findAllDvds();
             
             $promise
                 .success(function(response){
                     console.log(response);
-                    $scope.listLivros = response.entity;
+                    $scope.listDvds = response.entity;
                 })
             
                 .error(function(response){
                     console.log(response);
-                    var $toastContent = $('<span>Ocorreu um erro ao buscar livros.</span>');
+                    var $toastContent = $('<span>Ocorreu um erro ao buscar dvds.</span>');
                     Materialize.toast($toastContent, 3000);
                 });
         }
         
         
-        $scope.excluirLivro = function(livro){
+        $scope.excluirDvd = function(dvd){
             
-            var $promise = livroService.delete(livro);
+            var $promise = dvdService.delete(dvd);
 
             $promise
             .success(function(response){
                 var $toastContent = $('<span>' + response.mensagemRetorno + '</span>');
                     Materialize.toast($toastContent, 3000);
 
-                $scope.findAllLivros();
+                $scope.findAllDvds();
 
             })
 
@@ -53,7 +53,7 @@
                         
         }
         
-        $scope.findAllLivros();
+        $scope.findAllDvds();
     
     }
 
@@ -61,12 +61,13 @@
     
   var deps = [
     '$scope',
-    'livroService',  
-    livroInicioController
+    'dvdService',  
+    dvdInicioController
   ];
 
   angular.module('siscobli')
-  .controller('livroInicioController',deps);
+  .controller('dvdInicioController',deps);
 
    
 })();
+
